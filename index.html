@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Carte de Visite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .carte {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        }
+
+        h1 {
+            color: #1a1a2e;
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .titre {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .boutons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .whatsapp {
+            background: #25d366;
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .galerie-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Galerie Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal.actif {
+            display: block;
+        }
+
+        .modal-header {
+            position: sticky;
+            top: 0;
+            background: rgba(0,0,0,0.9);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .modal-titre {
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .fermer {
+            background: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .grille {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: #333;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .item:hover {
+            transform: scale(1.05);
+        }
+
+        .item img, .item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+
+        .legende {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px 10px 10px;
+            font-size: 14px;
+        }
+
+        /* Visionneuse */
+        .visionneuse {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.98);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .visionneuse.actif {
+            display: flex;
+        }
+
+        .visionneuse img, .visionneuse video {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 12px;
+        }
+
+        .visionneuse .fermer {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .chargement {
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carte">
+        <div class="avatar">👤</div>
+        <h1 id="nom">Chargement...</h1>
+        <p class="titre" id="titre">...</p>
+        
+        <div class="boutons">
+            <a id="lien-whatsapp" class="btn whatsapp" href="#">
+                📱 WhatsApp
+            </a>
+            <a id="lien-instagram" class="btn instagram" href="#">
+                📷 Instagram
+            </a>
+            <button class="btn galerie-btn" onclick="ouvrirGalerie()">
+                🖼️ Voir la Galerie
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Galerie -->
+    <div id="modal-galerie" class="modal">
+        <div class="modal-header">
+            <span class="modal-titre">Ma Galerie</span>
+            <button class="fermer" onclick="fermerGalerie()">✕ Fermer</button>
+        </div>
+        <div id="contenu-galerie" class="grille">
+            <div class="chargement">Chargement...</div>
+        </div>
+    </div>
+
+    <!-- Visionneuse -->
+    <div id="visionneuse" class="visionneuse" onclick="fermerVisionneuse()">
+        <button class="fermer" onclick="fermerVisionneuse()">✕ Fermer</button>
+        <div id="media-container"></div>
+    </div>
+
+    <script>
+        let configData = null;
+
+        // Charger le fichier JSON local
+        async function chargerConfig() {
+            try {
+                const response = await fetch('config.json');
+                configData = await response.json();
+                
+                // Remplir les infos
+                document.getElementById('nom').textContent = configData.nom;
+                document.getElementById('titre').textContent = configData.titre;
+                document.getElementById('lien-whatsapp').href = 
+                    `https://wa.me/${configData.whatsapp}`;
+                document.getElementById('lien-instagram').href = 
+                    `https://instagram.com/${configData.instagram}`;
+                
+                // Sauvegarder dans localStorage pour mode hors ligne
+                localStorage.setItem('config_carte', JSON.stringify(configData));
+                
+            } catch (erreur) {
+                console.log('Erreur chargement, utilisation du cache:', erreur);
+                // Essayer de charger depuis le cache
+                const cache = localStorage.getItem('config_carte');
+                if (cache) {
+                    configData = JSON.parse(cache);
+                    document.getElementById('nom').textContent = configData.nom;
+                    document.getElementById('titre').textContent = configData.titre;
+                    document.getElementById('lien-whatsapp').href = 
+                        `https://wa.me/${configData.whatsapp}`;
+                    document.getElementById('lien-instagram').href = 
+                        `https://instagram.com/${configData.instagram}`;
+                }
+            }
+        }
+
+        function ouvrirGalerie() {
+            if (!configData || !configData.galerie) return;
+            
+            const contenu = document.getElementById('contenu-galerie');
+            contenu.innerHTML = '';
+            
+            configData.galerie.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.onclick = () => ouvrirMedia(index);
+                
+                if (item.type === 'video') {
+                    div.innerHTML = `
+                        <video poster="${item.poster || item.fichier}" preload="metadata">
+                            <source src="${item.fichier}" type="video/mp4">
+                        </video>
+                        <span class="play-icon">▶️</span>
+                        ${item.legende ? `<div class="legende">${item.legende}</div>` : ''}
+                    `;
+                } else {
+                    div.innerHTML = `
+                        <img src="${item.fichier}" alt="${item.legende || ''}" loading="lazy">
+                        ${item.legende ? `<div class="legende">${item.legende}</div>` : ''}
+                    `;
+                }
+                
+                contenu.appendChild(div);
+            });
+            
+            document.getElementById('modal-galerie').classList.add('actif');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fermerGalerie() {
+            document.getElementById('modal-galerie').classList.remove('actif');
+            document.body.style.overflow = 'auto';
+        }
+
+        function ouvrirMedia(index) {
+            const item = configData.galerie[index];
+            const container = document.getElementById('media-container');
+            
+            if (item.type === 'video') {
+                container.innerHTML = `
+                    <video controls autoplay style="max-width: 100%; max-height: 90vh;">
+                        <source src="${item.fichier}" type="video/mp4">
+                    </video>
+                `;
+            } else {
+                container.innerHTML = `
+                    <img src="${item.fichier}" alt="${item.legende || ''}" 
+                         style="max-width: 100%; max-height: 90vh; border-radius: 12px;">
+                `;
+            }
+            
+            document.getElementById('visionneuse').classList.add('actif');
+        }
+
+        function fermerVisionneuse() {
+            document.getElementById('visionneuse').classList.remove('actif');
+            document.getElementById('media-container').innerHTML = '';
+        }
+
+        // Charger au démarrage
+        chargerConfig();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "nom": "Votre Nom",
+  "titre": "Photographe & Créatif",
+  "whatsapp": "+212608134726",
+  "instagram": "votre_compte",
+  "galerie": [
+    {
+      "type": "image",
+      "fichier": "images/OIP.webp",
+      "legende": "Projet 1"
+    },
+    {
+      "type": "image",
+      "fichier": "images/photo2.jpg",
+      "legende": "Projet 2"
+    },
+    {
+      "type": "video",
+      "fichier": "images/video1.mp4",
+      "poster": "images/photo1.jpg",
+      "legende": "Démonstration"
+    }
+  ]
+}
