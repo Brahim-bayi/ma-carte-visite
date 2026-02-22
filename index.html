@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRALION - Expertise Bâtiment & Travaux</title>
+    <title>BRALION - Bâtiment & Travaux</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
         
         * {
             margin: 0;
@@ -14,244 +14,100 @@
         }
 
         :root {
-            --primary: #1a365d;
-            --secondary: #c9a227;
-            --accent: #2d3748;
-            --light: #f7fafc;
-            --gray: #718096;
-            --border: #e2e8f0;
+            --primary: #1e3a5f;
+            --secondary: #d4af37;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            color: var(--accent);
         }
 
-        /* Carte principale */
         .carte {
-            background: #ffffff;
-            border-radius: 8px;
-            max-width: 450px;
+            background: white;
+            border-radius: 16px;
+            max-width: 400px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
             overflow: hidden;
             position: relative;
         }
 
-        /* Bandeau supérieur */
-        .header-band {
-            background: var(--primary);
-            height: 8px;
+        /* Header avec logo */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
+            padding: 40px 30px;
+            text-align: center;
             position: relative;
         }
 
-        .header-band::after {
+        .header::after {
             content: '';
             position: absolute;
+            bottom: -20px;
+            left: 0;
             right: 0;
-            top: 0;
-            width: 30%;
-            height: 100%;
-            background: var(--secondary);
+            height: 40px;
+            background: white;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
         }
 
-        /* Section logo */
-        .logo-section {
-            padding: 30px 30px 20px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            font-weight: 800;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 0 20px 20px;
-            border-color: transparent transparent var(--secondary) transparent;
-        }
-
-        .logo-text {
-            flex: 1;
-        }
-
-        .company-name {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: 2px;
-            line-height: 1;
-        }
-
-        .company-tagline {
-            font-size: 11px;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-top: 4px;
-            font-weight: 600;
-        }
-
-        /* Section profil */
-        .profile-section {
-            padding: 30px;
-            display: flex;
-            gap: 25px;
-            align-items: flex-start;
-        }
-
-        .avatar-container {
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .avatar {
-            width: 100px;
-            height: 100px;
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
             border-radius: 50%;
+            border: 4px solid var(--secondary);
             overflow: hidden;
-            border: 3px solid var(--secondary);
-            background: var(--light);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
         }
 
-        .avatar img {
+        .logo-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .avatar-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        .company-name {
             color: white;
-        }
-
-        .status-badge {
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            width: 20px;
-            height: 20px;
-            background: #48bb78;
-            border: 3px solid white;
-            border-radius: 50%;
-        }
-
-        .profile-info {
-            flex: 1;
-        }
-
-        .profile-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 4px;
-        }
-
-        .profile-title {
-            font-size: 14px;
-            color: var(--secondary);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .profile-desc {
-            font-size: 13px;
-            color: var(--gray);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .certifications {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .cert-badge {
-            background: var(--light);
-            border: 1px solid var(--border);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Stats entreprise */
-        .stats-section {
-            background: var(--light);
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-around;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 800;
-            color: var(--primary);
-            line-height: 1;
+            letter-spacing: 4px;
+            margin-top: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .stat-label {
-            font-size: 11px;
-            color: var(--gray);
+        .company-tagline {
+            color: var(--secondary);
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
+            letter-spacing: 3px;
+            margin-top: 8px;
             font-weight: 600;
         }
 
-        /* Contact rapide */
+        /* Corps de la carte */
+        .body {
+            padding: 40px 30px 30px;
+        }
+
         .contact-section {
-            padding: 25px 30px;
-            background: white;
+            margin-bottom: 25px;
         }
 
         .section-title {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--gray);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -266,63 +122,73 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: var(--border);
+            background: #e2e8f0;
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .contact-list {
+            display: flex;
+            flex-direction: column;
             gap: 12px;
-            margin-bottom: 20px;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px;
+            gap: 15px;
+            padding: 15px;
             background: var(--light);
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            transition: all 0.2s;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
         }
 
         .contact-item:hover {
             border-color: var(--secondary);
             background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateX(5px);
         }
 
         .contact-icon {
-            width: 36px;
-            height: 36px;
+            width: 45px;
+            height: 45px;
             background: white;
-            border-radius: 6px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            border: 1px solid var(--border);
+            font-size: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            flex-shrink: 0;
         }
 
-        .contact-text {
-            font-size: 12px;
-            color: var(--accent);
-            font-weight: 600;
+        .contact-info {
+            flex: 1;
         }
 
         .contact-label {
-            font-size: 10px;
+            font-size: 11px;
             color: var(--gray);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 2px;
         }
 
-        /* Boutons action */
+        .contact-value {
+            font-size: 14px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        /* Boutons */
         .actions {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            margin-top: 25px;
         }
 
         .btn {
@@ -330,72 +196,61 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 14px 20px;
-            border-radius: 6px;
+            padding: 16px 24px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
+            font-weight: 700;
+            font-size: 14px;
             letter-spacing: 0.5px;
-            text-transform: uppercase;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
         }
 
-        .btn-primary {
+        .btn-whatsapp {
+            background: #25d366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(225, 48, 108, 0.3);
+        }
+
+        .btn-gallery {
             background: var(--primary);
             color: white;
         }
 
-        .btn-primary:hover {
+        .btn-gallery:hover {
             background: #2c5282;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(30, 58, 95, 0.3);
         }
 
-        .btn-secondary {
+        .btn-save {
             background: white;
             color: var(--primary);
             border: 2px solid var(--primary);
         }
 
-        .btn-secondary:hover {
+        .btn-save:hover {
             background: var(--primary);
             color: white;
         }
 
-        .btn-gold {
-            background: var(--secondary);
-            color: var(--primary);
-        }
-
-        .btn-gold:hover {
-            background: #b8941f;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(201, 162, 39, 0.3);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--primary);
-            color: white;
-            padding: 20px 30px;
-            text-align: center;
-        }
-
-        .footer-text {
-            font-size: 11px;
-            opacity: 0.8;
-            letter-spacing: 1px;
-        }
-
-        .footer-siret {
-            font-size: 10px;
-            opacity: 0.6;
-            margin-top: 5px;
-        }
-
-        /* Modal Galerie professionnelle */
+        /* Modal Galerie */
         .modal {
             display: none;
             position: fixed;
@@ -403,7 +258,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(26, 54, 93, 0.95);
+            background: rgba(15, 23, 42, 0.95);
             z-index: 1000;
             overflow-y: auto;
         }
@@ -414,7 +269,7 @@
 
         .modal-header {
             background: white;
-            padding: 20px 30px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -428,14 +283,12 @@
             font-size: 18px;
             font-weight: 700;
             color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .btn-close {
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
             color: var(--gray);
             width: 40px;
@@ -443,7 +296,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 6px;
+            border-radius: 8px;
             transition: all 0.2s;
         }
 
@@ -454,32 +307,47 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 30px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .gallery-item {
             position: relative;
-            background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            aspect-ratio: 1;
             cursor: pointer;
+            background: #e2e8f0;
             transition: transform 0.3s;
         }
 
         .gallery-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .gallery-item img {
+        .gallery-item img, .gallery-item video {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            pointer-events: none;
         }
 
         .gallery-overlay {
@@ -487,9 +355,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(26, 54, 93, 0.9));
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
             color: white;
-            padding: 30px 20px 20px;
+            padding: 20px;
             transform: translateY(100%);
             transition: transform 0.3s;
         }
@@ -500,18 +368,10 @@
 
         .gallery-title {
             font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 5px;
+            font-size: 14px;
         }
 
-        .gallery-category {
-            font-size: 12px;
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Visionneuse */
+        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -523,25 +383,24 @@
             z-index: 2000;
             justify-content: center;
             align-items: center;
-            padding: 40px;
+            padding: 20px;
         }
 
         .lightbox.actif {
             display: flex;
         }
 
-        .lightbox img {
-            max-width: 90%;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 4px;
+        .lightbox img, .lightbox video {
+            max-width: 95%;
+            max-height: 90vh;
+            border-radius: 8px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
         .lightbox-close {
             position: absolute;
-            top: 30px;
-            right: 30px;
+            top: 20px;
+            right: 20px;
             background: white;
             border: none;
             width: 50px;
@@ -552,265 +411,182 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
         }
 
-        .lightbox-close:hover {
-            background: var(--secondary);
-            transform: rotate(90deg);
+        /* Footer */
+        .footer {
+            background: var(--light);
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
         }
 
-        /* Responsive */
+        .footer-text {
+            font-size: 12px;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
         @media (max-width: 480px) {
-            .profile-section {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .certifications {
-                justify-content: center;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                padding: 20px;
-            }
-        }
-
-        /* Animation subtile */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .carte {
-            animation: fadeIn 0.6s ease;
+            .header { padding: 30px 20px; }
+            .body { padding: 30px 20px 20px; }
+            .company-name { font-size: 28px; }
+            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <div class="carte">
-        <!-- Bandeau -->
-        <div class="header-band"></div>
-        
-        <!-- Logo -->
-        <div class="logo-section">
-            <div class="logo-icon">B</div>
-            <div class="logo-text">
-                <div class="company-name">BRALION</div>
-                <div class="company-tagline">Bâtiment & Travaux Publics</div>
+        <!-- Header avec Logo -->
+        <div class="header">
+            <div class="logo-container">
+                <img src="image.png" alt="Logo BRALION" id="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='🏗️'; this.parentElement.style.fontSize='60px'; this.parentElement.style.display='flex'; this.parentElement.style.alignItems='center'; this.parentElement.style.justifyContent='center';">
             </div>
+            <div class="company-name">BRALION</div>
+            <div class="company-tagline">Bâtiment & Travaux</div>
         </div>
 
-        <!-- Profil -->
-        <div class="profile-section">
-            <div class="avatar-container">
-                <div class="avatar" id="avatar-container">
-                    <img src="profil.jpg" alt="Photo profil" id="avatar-img" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'avatar-placeholder\'>👷</div>';">
-                </div>
-                <div class="status-badge" title="Disponible"></div>
-            </div>
-            <div class="profile-info">
-                <div class="profile-name" id="nom">Jean Dupont</div>
-                <div class="profile-title" id="titre">Directeur des Opérations</div>
-                <div class="profile-desc" id="description">
-                    Expert en gestion de projets de construction et rénovation. Plus de 15 ans d'expérience dans le secteur du bâtiment.
-                </div>
-                <div class="certifications">
-                    <span class="cert-badge">Qualibat RGE</span>
-                    <span class="cert-badge">ISO 9001</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Stats -->
-        <div class="stats-section">
-            <div class="stat-item">
-                <div class="stat-number" id="stat-chantiers">150+</div>
-                <div class="stat-label">Chantiers</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" id="stat-clients">80+</div>
-                <div class="stat-label">Clients</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" id="stat-experience">15</div>
-                <div class="stat-label">Années</div>
-            </div>
-        </div>
-
-        <!-- Contact -->
-        <div class="contact-section">
-            <div class="section-title">Coordonnées</div>
-            
-            <div class="contact-grid">
-                <a href="tel:+33612345678" class="contact-item" id="contact-phone">
-                    <div class="contact-icon">📞</div>
-                    <div>
-                        <div class="contact-label">Téléphone</div>
-                        <div class="contact-text" id="telephone">06 12 34 56 78</div>
-                    </div>
-                </a>
-                
-                <a href="mailto:contact@bralion.fr" class="contact-item" id="contact-email">
-                    <div class="contact-icon">✉️</div>
-                    <div>
-                        <div class="contact-label">Email</div>
-                        <div class="contact-text" id="email">contact@bralion.fr</div>
-                    </div>
-                </a>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <div>
-                        <div class="contact-label">Adresse</div>
-                        <div class="contact-text" id="adresse">12 Rue des Artisans, 75001 Paris</div>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">🕐</div>
-                    <div>
-                        <div class="contact-label">Horaires</div>
-                        <div class="contact-text">Lun-Ven: 8h-18h</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="actions">
-                <a href="#" class="btn btn-primary" id="btn-devis" onclick="showDevis(); return false;">
-                    📋 Demander un Devis
-                </a>
-                
-                <div style="display: flex; gap: 10px;">
-                    <a href="#" class="btn btn-secondary" style="flex: 1;" id="lien-whatsapp">
-                        💬 WhatsApp
+        <!-- Corps -->
+        <div class="body">
+            <!-- Contact -->
+            <div class="contact-section">
+                <div class="section-title">Contact</div>
+                <div class="contact-list">
+                    <a href="tel:+212608134726" class="contact-item" id="link-phone">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-info">
+                            <div class="contact-label">Téléphone</div>
+                            <div class="contact-value" id="telephone">+212 6 08 13 47 26</div>
+                        </div>
                     </a>
-                    <button class="btn btn-gold" style="flex: 1;" onclick="ouvrirGalerie()">
-                        🏗️ Réalisations
-                    </button>
+
+                    <a href="mailto:contact@bralion.fr" class="contact-item" id="link-email">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-info">
+                            <div class="contact-label">Email</div>
+                            <div class="contact-value" id="email">contact@bralion.fr</div>
+                        </div>
+                    </a>
                 </div>
-                
-                <button class="btn btn-secondary" onclick="telechargerContact()">
-                    💾 Sauvegarder Contact
+            </div>
+
+            <!-- Actions -->
+            <div class="actions">
+                <a href="https://wa.me/212608134726" class="btn btn-whatsapp" id="btn-whatsapp">
+                    <span>💬</span>
+                    <span>WhatsApp</span>
+                </a>
+
+                <a href="https://instagram.com/votre_compte" class="btn btn-instagram" id="btn-instagram">
+                    <span>📷</span>
+                    <span>Instagram</span>
+                </a>
+
+              <button class="btn btn-gallery" onclick="ouvrirGalerie()">
+    <img src="https://img.icons8.com/fluent-systems-regular/512/FFFFFF/picture.png" alt="Galerie" width="24" height="24">
+    <span>Galerie</span>
+</button>
+
+                <button class="btn btn-save" onclick="sauvegarderContact()">
+                    <span>💾</span>
+                    <span>Sauvegarder Contact</span>
                 </button>
             </div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <div class="footer-text">BRALION - Votre partenaire construction de confiance</div>
-            <div class="footer-siret" id="siret">SIRET: 123 456 789 00012</div>
+            <div class="footer-text">BRALION - Votre partenaire confiance</div>
         </div>
     </div>
 
     <!-- Modal Galerie -->
     <div id="modal-galerie" class="modal">
         <div class="modal-header">
-            <div class="modal-title">🏗️ Nos Réalisations</div>
+            <div class="modal-title">Nos Réalisations</div>
             <button class="btn-close" onclick="fermerGalerie()">×</button>
         </div>
-        <div class="gallery-grid" id="gallery-content">
-            <!-- Contenu chargé dynamiquement -->
-        </div>
+        <div class="gallery-grid" id="gallery-content"></div>
     </div>
 
     <!-- Lightbox -->
     <div id="lightbox" class="lightbox" onclick="fermerLightbox()">
         <button class="lightbox-close" onclick="fermerLightbox()">×</button>
-        <img src="" alt="Vue agrandie" id="lightbox-img">
+        <div id="lightbox-media"></div>
     </div>
 
     <script>
         let configData = null;
-        let galleryData = [];
+        let currentMediaIndex = 0;
 
-        // Données par défaut
-        const defaultData = {
-            nom: "Jean Dupont",
-            titre: "Directeur des Opérations",
-            description: "Expert en gestion de projets de construction et rénovation. Plus de 15 ans d'expérience dans le secteur du bâtiment.",
-            telephone: "06 12 34 56 78",
-            email: "contact@bralion.fr",
-            adresse: "12 Rue des Artisans, 75001 Paris",
-            whatsapp: "33612345678",
-            siret: "123 456 789 00012",
-            photo: "profil.jpg",
-            stats: {
-                chantiers: 150,
-                clients: 80,
-                experience: 15
-            },
-            galerie: [
-                { fichier: "chantier1.jpg", titre: "Rénovation Bureau", categorie: "Rénovation" },
-                { fichier: "chantier2.jpg", titre: "Construction Maison", categorie: "Neuf" },
-                { fichier: "chantier3.jpg", titre: "Extension Industrielle", categorie: "Extension" }
-            ]
-        };
-
-        // Charger configuration
+        // Charger le fichier config.json
         async function chargerConfig() {
             try {
                 const response = await fetch('config.json');
                 configData = await response.json();
-            } catch (e) {
-                configData = defaultData;
-                console.log('Utilisation des données par défaut');
+                
+                // Mettre à jour les infos
+                document.getElementById('telephone').textContent = configData.whatsapp;
+                document.getElementById('link-phone').href = 'tel:' + configData.whatsapp.replace(/\s/g, '');
+                document.getElementById('btn-whatsapp').href = 'https://wa.me/' + configData.whatsapp.replace(/[^0-9]/g, '');
+                document.getElementById('btn-instagram').href = 'https://instagram.com/' + configData.instagram;
+                
+                // Sauvegarder dans localStorage pour mode hors ligne
+                localStorage.setItem('bralion_config', JSON.stringify(configData));
+                
+            } catch (erreur) {
+                console.log('Erreur chargement config, utilisation du cache');
+                const cache = localStorage.getItem('bralion_config');
+                if (cache) {
+                    configData = JSON.parse(cache);
+                } else {
+                    // Valeurs par défaut
+                    configData = {
+                        nom: "BRALION",
+                        whatsapp: "+212608134726",
+                        instagram: "votre_compte",
+                        galerie: []
+                    };
+                }
             }
-            
-            // Remplir les champs
-            document.getElementById('nom').textContent = configData.nom;
-            document.getElementById('titre').textContent = configData.titre;
-            document.getElementById('description').textContent = configData.description;
-            document.getElementById('telephone').textContent = configData.telephone;
-            document.getElementById('email').textContent = configData.email;
-            document.getElementById('adresse').textContent = configData.adresse;
-            document.getElementById('siret').textContent = 'SIRET: ' + configData.siret;
-            
-            // Liens
-            document.getElementById('contact-phone').href = 'tel:' + configData.telephone.replace(/\s/g, '');
-            document.getElementById('contact-email').href = 'mailto:' + configData.email;
-            document.getElementById('lien-whatsapp').href = 'https://wa.me/' + configData.whatsapp;
-            
-            // Stats
-            if (configData.stats) {
-                document.getElementById('stat-chantiers').textContent = configData.stats.chantiers + '+';
-                document.getElementById('stat-clients').textContent = configData.stats.clients + '+';
-                document.getElementById('stat-experience').textContent = configData.stats.experience;
-            }
-            
-            // Photo
-            if (configData.photo) {
-                document.getElementById('avatar-img').src = configData.photo;
-            }
-            
-            // Galerie
-            galleryData = configData.galerie || defaultData.galerie;
         }
 
-        // Galerie
+        // Galerie avec support images et vidéos
         function ouvrirGalerie() {
+            if (!configData || !configData.galerie) {
+                alert('Galerie non disponible');
+                return;
+            }
+            
             const container = document.getElementById('gallery-content');
             container.innerHTML = '';
             
-            galleryData.forEach((item, index) => {
+            configData.galerie.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.className = 'gallery-item';
-                div.onclick = () => ouvrirLightbox(item.fichier);
+                div.onclick = () => ouvrirLightbox(index);
                 
-                div.innerHTML = `
-                    <img src="${item.fichier}" alt="${item.titre}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/1a365d/ffffff?text=BRALION'">
-                    <div class="gallery-overlay">
-                        <div class="gallery-title">${item.titre}</div>
-                        <div class="gallery-category">${item.categorie}</div>
-                    </div>
-                `;
+                if (item.type === 'video') {
+                    // Vidéo avec poster
+                    div.innerHTML = `
+                        <video poster="${item.poster || ''}" preload="metadata" muted>
+                            <source src="${item.fichier}" type="video/mp4">
+                        </video>
+                        <div class="play-icon">▶</div>
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">${item.legende || 'Vidéo'}</div>
+                        </div>
+                    `;
+                } else {
+                    // Image
+                    div.innerHTML = `
+                        <img src="${item.fichier}" alt="${item.legende || 'Photo'}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400/1e3a5f/ffffff?text=BRALION'">
+                        <div class="gallery-overlay">
+                            <div class="gallery-title">${item.legende || 'Projet'}</div>
+                        </div>
+                    `;
+                }
                 
                 container.appendChild(div);
             });
@@ -824,51 +600,69 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Lightbox
-        function ouvrirLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
+        // Lightbox pour images et vidéos
+        function ouvrirLightbox(index) {
+            currentMediaIndex = index;
+            const item = configData.galerie[index];
+            const container = document.getElementById('lightbox-media');
+            
+            if (item.type === 'video') {
+                container.innerHTML = `
+                    <video controls autoplay style="max-width: 95%; max-height: 90vh; border-radius: 8px;">
+                        <source src="${item.fichier}" type="video/mp4">
+                        Votre navigateur ne supporte pas la vidéo.
+                    </video>
+                `;
+            } else {
+                container.innerHTML = `
+                    <img src="${item.fichier}" alt="${item.legende || ''}" style="max-width: 95%; max-height: 90vh; border-radius: 8px;" onerror="this.src='https://via.placeholder.com/800x600/1e3a5f/ffffff?text=Image+non+disponible'">
+                `;
+            }
+            
             document.getElementById('lightbox').classList.add('actif');
         }
 
         function fermerLightbox() {
             document.getElementById('lightbox').classList.remove('actif');
+            document.getElementById('lightbox-media').innerHTML = '';
         }
 
-        // Actions
-        function showDevis() {
-            const message = encodeURIComponent("Bonjour BRALION, je souhaite obtenir un devis pour un projet de construction.");
-            window.open(`https://wa.me/${configData.whatsapp}?text=${message}`, '_blank');
-        }
-
-        function telechargerContact() {
+        // Sauvegarder contact
+        function sauvegarderContact() {
             const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:${configData.nom}
+FN:${configData?.nom || 'BRALION'}
 ORG:BRALION
-TITLE:${configData.titre}
-TEL:${configData.telephone}
-EMAIL:${configData.email}
-ADR:;;${configData.adresse};;;;
-URL:https://bralion.fr
-NOTE:${configData.description}
+TEL:${configData?.whatsapp || '+212608134726'}
+EMAIL:contact@bralion.fr
+URL:https://instagram.com/${configData?.instagram || 'votre_compte'}
+NOTE:Bâtiment et Travaux
 END:VCARD`;
             
             const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `BRALION_${configData.nom.replace(/\s/g, '_')}.vcf`;
+            a.download = 'BRALION.vcf';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
             
-            alert('Contact sauvegardé dans vos contacts !');
+            alert('Contact BRALION sauvegardé dans vos contacts !');
         }
 
-        // Fermer modal en cliquant à l'extérieur
+        // Fermer modals en cliquant à l'extérieur
         document.getElementById('modal-galerie').addEventListener('click', (e) => {
             if (e.target === e.currentTarget) fermerGalerie();
+        });
+
+        // Navigation clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                fermerLightbox();
+                fermerGalerie();
+            }
         });
 
         // Initialisation
