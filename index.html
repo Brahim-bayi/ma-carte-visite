@@ -41,7 +41,6 @@
             position: relative;
         }
 
-        /* Header avec logo */
         .header {
             background: linear-gradient(135deg, var(--primary) 0%, #2c5282 100%);
             padding: 40px 30px;
@@ -71,6 +70,10 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             position: relative;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
         }
 
         .logo-container img {
@@ -97,7 +100,6 @@
             font-weight: 600;
         }
 
-        /* Corps de la carte */
         .body {
             padding: 40px 30px 30px;
         }
@@ -183,7 +185,6 @@
             font-weight: 700;
         }
 
-        /* Boutons */
         .actions {
             display: flex;
             flex-direction: column;
@@ -250,7 +251,6 @@
             color: white;
         }
 
-        /* Modal Galerie */
         .modal {
             display: none;
             position: fixed;
@@ -371,7 +371,6 @@
             font-size: 14px;
         }
 
-        /* Lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -413,7 +412,6 @@
             justify-content: center;
         }
 
-        /* Footer */
         .footer {
             background: var(--light);
             padding: 20px;
@@ -438,18 +436,15 @@
 <body>
 
     <div class="carte">
-        <!-- Header avec Logo -->
         <div class="header">
             <div class="logo-container">
-                <img src="image.png" alt="Logo BRALION" id="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='🏗️'; this.parentElement.style.fontSize='60px'; this.parentElement.style.display='flex'; this.parentElement.style.alignItems='center'; this.parentElement.style.justifyContent='center';">
+                <img src="images/image.png" alt="Logo BRALION" id="logo-img" onerror="this.style.display='none'; this.parentElement.innerHTML='🏗️';">
             </div>
             <div class="company-name">BRALION</div>
             <div class="company-tagline">Bâtiment & Travaux</div>
         </div>
 
-        <!-- Corps -->
         <div class="body">
-            <!-- Contact -->
             <div class="contact-section">
                 <div class="section-title">Contact</div>
                 <div class="contact-list">
@@ -471,7 +466,6 @@
                 </div>
             </div>
 
-            <!-- Actions -->
             <div class="actions">
                 <a href="https://wa.me/212608134726" class="btn btn-whatsapp" id="btn-whatsapp">
                     <span>💬</span>
@@ -483,10 +477,10 @@
                     <span>Instagram</span>
                 </a>
 
-              <button class="btn btn-gallery" onclick="ouvrirGalerie()">
-    <img src="https://img.icons8.com/fluent-systems-regular/512/FFFFFF/picture.png" alt="Galerie" width="24" height="24">
-    <span>Galerie</span>
-</button>
+                <button class="btn btn-gallery" onclick="ouvrirGalerie()">
+                    <span>🖼️</span>
+                    <span>Galerie</span>
+                </button>
 
                 <button class="btn btn-save" onclick="sauvegarderContact()">
                     <span>💾</span>
@@ -495,13 +489,11 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <div class="footer">
             <div class="footer-text">BRALION - Votre partenaire confiance</div>
         </div>
     </div>
 
-    <!-- Modal Galerie -->
     <div id="modal-galerie" class="modal">
         <div class="modal-header">
             <div class="modal-title">Nos Réalisations</div>
@@ -510,55 +502,72 @@
         <div class="gallery-grid" id="gallery-content"></div>
     </div>
 
-    <!-- Lightbox -->
     <div id="lightbox" class="lightbox" onclick="fermerLightbox()">
         <button class="lightbox-close" onclick="fermerLightbox()">×</button>
         <div id="lightbox-media"></div>
     </div>
 
     <script>
-        let configData = null;
+        // CONFIGURATION DIRECTEMENT F LCODE (ma7itich config.json)
+        const configData = {
+            "nom": "Votre Nom",
+            "titre": "Photographe & Créatif",
+            "whatsapp": "+212608134726",
+            "instagram": "votre_compte",
+            "logo": "images/image.png",
+            "galerie": [
+                {
+                    "type": "image",
+                    "fichier": "images/OIP.webp",
+                    "legende": "Projet 1"
+                },
+                {
+                    "type": "image",
+                    "fichier": "images/image copy 2.png",
+                    "legende": "Projet 2"
+                },
+                {
+                    "type": "video",
+                    "fichier": "images/vds.mp4",
+                    "poster": "images/photo1.jpg",
+                    "legende": "Démonstration"
+                },
+                {
+                    "type": "image",
+                    "fichier": "images/image copy 3.png",
+                    "legende": "Projet 3"
+                },
+                {
+                    "type": "image",
+                    "fichier": "images/image copy 4.png",
+                    "legende": "Projet 4"
+                },
+                {
+                    "type": "image",
+                    "fichier": "images/image copy 5.png",
+                    "legende": "Projet 5"
+                },
+                {
+                    "type": "image",
+                    "fichier": "images/image copy 6.png",
+                    "legende": "Projet 6"
+                },
+                {
+                    "type": "image",
+                    "fichier": "images/image copy 7.png",
+                    "legende": "Projet 7"
+                },
+                {
+                    "type": "image",
+                    "fichier": "images/image copy.png",
+                    "legende": "Projet 0"
+                }
+            ]
+        };
+
         let currentMediaIndex = 0;
 
-        // Charger le fichier config.json
-        async function chargerConfig() {
-            try {
-                const response = await fetch('config.json');
-                configData = await response.json();
-                
-                // Mettre à jour les infos
-                document.getElementById('telephone').textContent = configData.whatsapp;
-                document.getElementById('link-phone').href = 'tel:' + configData.whatsapp.replace(/\s/g, '');
-                document.getElementById('btn-whatsapp').href = 'https://wa.me/' + configData.whatsapp.replace(/[^0-9]/g, '');
-                document.getElementById('btn-instagram').href = 'https://instagram.com/' + configData.instagram;
-                
-                // Sauvegarder dans localStorage pour mode hors ligne
-                localStorage.setItem('bralion_config', JSON.stringify(configData));
-                
-            } catch (erreur) {
-                console.log('Erreur chargement config, utilisation du cache');
-                const cache = localStorage.getItem('bralion_config');
-                if (cache) {
-                    configData = JSON.parse(cache);
-                } else {
-                    // Valeurs par défaut
-                    configData = {
-                        nom: "BRALION",
-                        whatsapp: "+212608134726",
-                        instagram: "votre_compte",
-                        galerie: []
-                    };
-                }
-            }
-        }
-
-        // Galerie avec support images et vidéos
         function ouvrirGalerie() {
-            if (!configData || !configData.galerie) {
-                alert('Galerie non disponible');
-                return;
-            }
-            
             const container = document.getElementById('gallery-content');
             container.innerHTML = '';
             
@@ -568,7 +577,6 @@
                 div.onclick = () => ouvrirLightbox(index);
                 
                 if (item.type === 'video') {
-                    // Vidéo avec poster
                     div.innerHTML = `
                         <video poster="${item.poster || ''}" preload="metadata" muted>
                             <source src="${item.fichier}" type="video/mp4">
@@ -579,9 +587,8 @@
                         </div>
                     `;
                 } else {
-                    // Image
                     div.innerHTML = `
-                        <img src="${item.fichier}" alt="${item.legende || 'Photo'}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400/1e3a5f/ffffff?text=BRALION'">
+                        <img src="${item.fichier}" alt="${item.legende || 'Photo'}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400/1e3a5f/ffffff?text=BRALION'; this.onerror=null;">
                         <div class="gallery-overlay">
                             <div class="gallery-title">${item.legende || 'Projet'}</div>
                         </div>
@@ -600,7 +607,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Lightbox pour images et vidéos
         function ouvrirLightbox(index) {
             currentMediaIndex = index;
             const item = configData.galerie[index];
@@ -627,15 +633,14 @@
             document.getElementById('lightbox-media').innerHTML = '';
         }
 
-        // Sauvegarder contact
         function sauvegarderContact() {
             const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:${configData?.nom || 'BRALION'}
+FN:${configData.nom || 'BRALION'}
 ORG:BRALION
-TEL:${configData?.whatsapp || '+212608134726'}
+TEL:${configData.whatsapp || '+212608134726'}
 EMAIL:contact@bralion.fr
-URL:https://instagram.com/${configData?.instagram || 'votre_compte'}
+URL:https://instagram.com/${configData.instagram || 'votre_compte'}
 NOTE:Bâtiment et Travaux
 END:VCARD`;
             
@@ -652,22 +657,17 @@ END:VCARD`;
             alert('Contact BRALION sauvegardé dans vos contacts !');
         }
 
-        // Fermer modals en cliquant à l'extérieur
-        document.getElementById('modal-galerie').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) fermerGalerie();
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'modal-galerie') fermerGalerie();
+            if (e.target.id === 'lightbox') fermerLightbox();
         });
 
-        // Navigation clavier
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 fermerLightbox();
                 fermerGalerie();
             }
         });
-
-        // Initialisation
-        window.addEventListener('DOMContentLoaded', chargerConfig);
     </script>
-
 </body>
 </html>

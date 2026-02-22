@@ -3,6 +3,7 @@
   "titre": "Photographe & Créatif",
   "whatsapp": "+212608134726",
   "instagram": "votre_compte",
+  "logo": "images/image.png",
   "galerie": [
     {
       "type": "image",
@@ -11,14 +12,42 @@
     },
     {
       "type": "image",
-      "fichier": "images/photo2.jpg",
+      "fichier": "images/image copy 2.png",
       "legende": "Projet 2"
     },
     {
       "type": "video",
-      "fichier": "images/video1.mp4",
+      "fichier": "images/vds.mp4",
       "poster": "images/photo1.jpg",
       "legende": "Démonstration"
+    },
+     {
+      "type": "image",
+      "fichier": "images/image copy 3.png",
+      "legende": "Projet 3"
+    },
+     {
+      "type": "image",
+      "fichier": "images/image copy 4.png",
+      "legende": "Projet 4"
+    }, {
+      "type": "image",
+      "fichier": "images/image copy 5.png",
+      "legende": "Projet 5"
+    }, {
+      "type": "image",
+      "fichier": "images/image copy 6.png",
+      "legende": "Projet 6"
+    }, 
+    {
+      "type": "image",
+      "fichier": "images/image copy 7.png",
+      "legende": "Projet 7"
+    },
+    {
+      "type": "image",
+      "fichier": "images/image copy.png",
+      "legende": "Projet 0"
     }
   ]
 }
